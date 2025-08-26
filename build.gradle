@@ -48,4 +48,49 @@ subprojects {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
+
+    publishMods {
+        changelog = rootProject.file("CHANGELOG.md").text
+        version = mod_version
+        type = STABLE
+
+        def CFOption = curseforgeOptions {
+            accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+            projectId = "544990"
+            minecraftVersions.add(minecraft_version)
+        }
+
+        def MROption = modrinthOptions {
+            accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+            projectId = "k7kuEnwe"
+            minecraftVersions.add(minecraft_version)
+        }
+
+        def createOptions = (String projectName) -> {
+            publishOptions {
+                file = project.provider { project(":$projectName").tasks.remapJar }.flatMap { it.archiveFile }
+                displayName = "[${projectName.toUpperCase()}] Homing Ender Eye ${mod_version} for ${minecraft_version}"
+                modLoaders.add(projectName.toLowerCase())
+            }
+        }
+
+        def FabricOptions = createOptions("fabric")
+        def NeoForgeOptions = createOptions("neoforge")
+
+        curseforge("CFFabric") {
+            from (CFOption,FabricOptions)
+        }
+
+        curseforge("CFNeoForge") {
+            from (CFOption,NeoForgeOptions)
+        }
+
+        modrinth("MRFabric") {
+            from (MROption,FabricOptions)
+        }
+
+        modrinth("MRNeoForge") {
+            from (MROption,NeoForgeOptions)
+        }
+    }
 }

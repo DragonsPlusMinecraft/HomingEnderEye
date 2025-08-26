@@ -6,7 +6,8 @@
   "client": [
   ],
   "mixins": [
-    "MixinServerPlayerEntity"
+    "MixinServerPlayerEntity",
+    "PointOfInterestTypesInvoker"
   ],
   "server": [],
   "injectors": {

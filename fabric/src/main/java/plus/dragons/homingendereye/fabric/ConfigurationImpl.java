@@ -7,14 +7,6 @@ public class ConfigurationImpl {
         return ConfigurationFabric.getRealTimeConfig().INDIVIDUAL_MODE;
     }
 
-    public static int getScanningRate() {
-        return ConfigurationFabric.getRealTimeConfig().SCANNING_RATE;
-    }
-
-    public static int getScanningRadius() {
-        return ConfigurationFabric.getRealTimeConfig().SCANNING_RADIUS;
-    }
-
     public static double getWarpingProbability() {
         return ConfigurationFabric.getRealTimeConfig().WARPING_PROBABILITY;
     }

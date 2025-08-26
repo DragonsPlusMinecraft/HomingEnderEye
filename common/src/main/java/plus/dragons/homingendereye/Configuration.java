@@ -8,16 +8,6 @@ public class Configuration {
     public static boolean isIndividualMode(){
         throw new RuntimeException();
     }
-
-    @ExpectPlatform
-    public static int getScanningRate(){
-        throw new RuntimeException();
-    }
-
-    @ExpectPlatform
-    public static int getScanningRadius(){
-        throw new RuntimeException();
-    }
     @ExpectPlatform
     public static double getWarpingProbability(){
         throw new RuntimeException();
