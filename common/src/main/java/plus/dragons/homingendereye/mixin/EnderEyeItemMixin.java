@@ -3,7 +3,6 @@ package plus.dragons.homingendereye.mixin;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.EnderEyeItem;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -23,7 +22,7 @@ import java.util.UUID;
 public class EnderEyeItemMixin {
 
     @Inject(method ="use",
-            at= @At(value ="INVOKE", target = "Lnet/minecraft/entity/EyeOfEnderEntity;initTargetPos(Lnet/minecraft/util/math/BlockPos;)V", shift = At.Shift.AFTER))
+            at= @At(value ="INVOKE", target = "Lnet/minecraft/entity/EyeOfEnderEntity;initTargetPos(Lnet/minecraft/util/math/Vec3d;)V", shift = At.Shift.AFTER))
     public void captureThrowSource(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<ActionResult> cir){
         // Only Signal Cache to Remember Who just throw an ender eye
         // Only works if the mode is running on Individual Mode
